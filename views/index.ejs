@@ -4,14 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URl Shortner (kinda)</title>
+    <script src="https://kit.fontawesome.com/3a9c9e1d26.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/stylesheets/index.css">
 </head>
 <body>
-    <form action="/api/url/shorten" method="POST">
-        <input type="text" name="longUrl">
-        <button>Submit</button>
-    </form>
-    <% if(shortUrl){ %>
-        <p><%= shortUrl %></p>
-    <% } %>
+
+    <section id="urlBox">
+        <h1>
+            URL
+            <span>Shortner</span>
+        </h1>
+        
+        <% if(!shortUrl){ %>
+            <p>
+                Enter a url to get a shorter version of it
+            </p>
+        <% } %>
+        
+        <form id="urlForm" action="/api/url/shorten" method="POST">
+            <input type="text" placeholder="Enter a URL" name="longUrl">
+            <button><i class="fas fa-arrow-right"></i></button>
+        </form>
+        <% if(shortUrl){ %>
+            <a href="<%= shortUrl %>" id=shortUrl><%= shortUrl %></a>
+            <button id="copy"><i class="fas fa-copy"></i></button>
+            <p>
+                I know that the domain name is still a tad long but this project was made for learning purposes! :)
+            </p>
+            <% } %>
+        
+    </section>
 </body>
 </html>
