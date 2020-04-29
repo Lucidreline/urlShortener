@@ -65,6 +65,8 @@ body{
     padding-right: 8rem;
 }
 
+
+
 #urlForm button{
     background: #574b90;
     border: 0;
@@ -88,17 +90,6 @@ body{
     font-size: 1.9rem;
     display: block;
     color: white;
-    margin: 2rem 0 1.5rem 0;
-}
+    margin: 2rem 0 2.7rem 0;
 
-#copy{
-    color: white;
-    font-size: 1.7rem;
-    background-color: #574b90;
-    border-radius: 2.5rem;
-    border: none;
-    height: 3.5rem;
-    width: 3.5rem;
-    cursor: pointer;
-    margin-bottom: 2.5rem;
 }

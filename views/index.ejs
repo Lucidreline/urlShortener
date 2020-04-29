@@ -14,7 +14,7 @@
             URL
             <span>Shortner</span>
         </h1>
-        
+
         <% if(!shortUrl){ %>
             <p>
                 Enter a url to get a shorter version of it
@@ -22,17 +22,19 @@
         <% } %>
         
         <form id="urlForm" action="/api/url/shorten" method="POST">
-            <input type="text" placeholder="Enter a URL" name="longUrl">
+            <input id='urlInput' type="text" placeholder="Enter a URL" name="longUrl">
+            <input type="text" id='hidden'>
             <button><i class="fas fa-arrow-right"></i></button>
         </form>
         <% if(shortUrl){ %>
-            <a href="<%= shortUrl %>" id=shortUrl><%= shortUrl %></a>
-            <button id="copy"><i class="fas fa-copy"></i></button>
+            <a href="<%= shortUrl %>" id="shortUrl"><%= shortUrl %></a>
             <p>
                 I know that the domain name is still a tad long but this project was made for learning purposes! :)
             </p>
             <% } %>
         
     </section>
+
+    <script src="/scripts/index.js"></script>
 </body>
 </html>
