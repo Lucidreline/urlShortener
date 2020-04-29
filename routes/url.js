@@ -38,7 +38,7 @@ router.post('/shorten', async (req, res) => {
             let url = await Url.findOne({ longUrl });
 
             if (url) { // prevents 2 codes being given out for one same website
-                res.json(url)
+                return res.render('./index', {shortUrl: url.shortUrl})
             } else {
                 const shortUrl = baseUrl + '/' + urlCode
 
@@ -50,8 +50,9 @@ router.post('/shorten', async (req, res) => {
                 });
 
                 await url.save()
-
-                res.json(url)
+                
+                return res.render('./index', {shortUrl: url.shortUrl})
+                
 
             }
         } catch (err) {

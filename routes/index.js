@@ -3,7 +3,12 @@ const router = express.Router();
 
 const Url = require('../models/Url')
 
-// @ route  GET /api/url/code
+// @ route  GET /api/url
+// @ desc  redirects to the desired url
+router.get('/', (req, res)=> res.render('./index', {shortUrl: false}))
+
+
+// @ route  GET /api/url/:code
 // @ desc  redirects to the desired url
 router.get('/:code', async (req, res) => {
     try{
@@ -19,5 +24,7 @@ router.get('/:code', async (req, res) => {
         res.status(500).json('Server Error');
     }
 })
+
+
 
 module.exports = router
