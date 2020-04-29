@@ -7,8 +7,9 @@ const Url = require('../models/Url')
 // @ desc  redirects to the desired url
 router.get('/:code', async (req, res) => {
     try{
-        const url = await Url.findOne({ urlCode: req.params.code })
-        if (url){
+        const url = await Url.findOne({ urlCode: req.params.code }) // finds the url in the data base
+
+        if (url){ 
             return res.redirect(url.longUrl)
         }else{
             return res.status(401).json('No url found')

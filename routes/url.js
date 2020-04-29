@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router();
 
-const validUrl = require('valid-url')
-const shortId = require('shortid')
+const validUrl = require('valid-url') // makes sure url's are real
+const shortId = require('shortid') // gives the ability to create a
 const config = require('config')
 
 const Url = require('../models/Url')
@@ -18,8 +18,19 @@ router.post('/shorten', async (req, res) => {
         return res.status(401).json('Invalid base url')
     }
 
-    // create url code
-    const urlCode = shortId.generate()
+    let unique = false
+    let urlCode = ''
+    while(!unique){ 
+        // create url code
+        urlCode = shortId.generate()
+        foundUrl = await Url.findOne({ urlCode })
+
+        if(!foundUrl){
+            unique = true
+        }
+    }
+
+    
 
     // check long url
     if (validUrl.isUri(longUrl)) {
