@@ -11,8 +11,8 @@ app.use(express.static("public")); //Tells the app where we are going to put ass
 app.use(bodyParser.urlencoded({extended:true})); //Allows us to get information from forms
 
 // Define routes
-app.use('/api/url', require('./routes/index'))
-app.use('/api/url', require('./routes/url'))
+app.use(require('./routes/index'))
+app.use(require('./routes/url'))
 
 const PORT = 8020 || process.env.PORT
 app.listen(PORT, ()=> console.log(`Server live on port ${PORT}`))
