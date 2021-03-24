@@ -34,30 +34,34 @@ router.post('/shorten', async (req, res) =>
 
 
     // check long url
-    try {
-        let url = await Url.findOne({ longUrl });
+    if (validUrl.isUri(longUrl)) {
+        try {
+            let url = await Url.findOne({ longUrl });
 
-        if (url) { // prevents 2 codes being given out for one same website
-            return res.render('./index', { shortUrl: url.shortUrl })
-        } else {
-            const shortUrl = baseUrl + '/' + urlCode
+            if (url) { // prevents 2 codes being given out for one same website
+                return res.render('./index', { shortUrl: url.shortUrl })
+            } else {
+                const shortUrl = baseUrl + '/' + urlCode
 
-            url = new Url({
-                longUrl,
-                shortUrl,
-                urlCode,
-                date: new Date()
-            });
+                url = new Url({
+                    longUrl,
+                    shortUrl,
+                    urlCode,
+                    date: new Date()
+                });
 
-            await url.save()
+                await url.save()
 
-            return res.render('./index', { shortUrl: url.shortUrl })
+                return res.render('./index', { shortUrl: url.shortUrl })
 
 
+            }
+        } catch (err) {
+            console.err(err)
+            res.status(500).json('Server Error')
         }
-    } catch (err) {
-        console.err(err)
-        res.status(500).json('Server Error')
+    } else {
+        res.status(401).json('Invalid Long Url')
     }
 })
 
